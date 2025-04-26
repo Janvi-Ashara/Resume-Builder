@@ -1,0 +1,44 @@
+.menu{
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.navbar{
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    justify-content: center;
+    align-content: center;
+    padding: 20px;
+}
+
+.breadcrumb{
+    display: flex;
+    align-items: center;
+}
+
+.link{
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.link:hover{
+    background-color: rgba(10, 9, 9, 0.76);
+    color: white;
+}
+
+.headers{
+    display: flex;
+    justify-content: space-between;
+}
+
+

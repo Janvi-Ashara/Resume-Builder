@@ -1,0 +1,43 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 2em;
+}
+
+.main{
+    width: 60%;
+}
+
+.img{
+    display: flex;
+    justify-content: space-around;
+    align-self: center;
+    width: 30%;
+}
+.link{
+    background-color: black;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.link1{
+    margin: 10px;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.link:hover{
+    background-color: rgba(10, 9, 9, 0.76);
+    color: white;
+}
+
+.link1:hover{
+    background-color: rgba(10, 9, 9, 0.76);
+    color: white;
+}
