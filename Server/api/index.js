@@ -29,7 +29,7 @@ mongoose
 
 app.use(
   cors({
-    origin: ["https://resume-builder-frontend-murex.vercel.app/"],
+    origin: ["https://resume-builder-frontend-murex.vercel.app"],
     methods: ["GET","POST","PUT","DELETE"],
     credentials: true,
   })
