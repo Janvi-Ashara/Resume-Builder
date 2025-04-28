@@ -19,17 +19,17 @@ mongoose
   .catch((err) => console.error("MongoDB connection error", err));
 
 // Middleware
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    methods: "GET,POST,PUT,DELETE",
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: "http://localhost:3000",
+//     methods: "GET,POST,PUT,DELETE",
+//     credentials: true,
+//   })
+// );
 
 app.use(
   cors({
-    origin: ["https://resume-builder-frontend-murex.vercel.app"],
+    origin: ["https://resume-builder-frontend-murex.vercel.app/"],
     methods: ["GET","POST","PUT","DELETE"],
     credentials: true,
   })
