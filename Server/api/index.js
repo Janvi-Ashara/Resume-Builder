@@ -301,6 +301,10 @@ app.get("/logout", (req, res, next) => {
   });
 });
 
+app.get("/", (req, res) => {
+  res.send("Welcome to my backend API server!");
+});
+
 app.listen(PORT, () => {
   console.log(`server start at port no ${PORT}`);
 });
