@@ -27,7 +27,7 @@ const Signup = () => {
     e.preventDefault()
     // axios.post('http://localhost:3001/register', { firstname, lastname, email, password })
     
-    axios.post('https://resume-builder-server-teal.vercel.app', { firstname, lastname, email, password })
+    axios.post('https://resume-builder-server-teal.vercel.app/register', { firstname, lastname, email, password })
       .then(result => {
         console.log(result)
         navigate('/login')
