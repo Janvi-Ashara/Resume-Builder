@@ -25,7 +25,7 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    axios.post('http://localhost:3001/register/', { firstname, lastname, email, password })
+    axios.post('http://localhost:3001/register', { firstname, lastname, email, password })
     
     // axios.post('https://resume-builder-server-zeta.vercel.app/register', { firstname, lastname, email, password })
       .then(result => {
