@@ -26,6 +26,14 @@ app.use(
     credentials: true,
   })
 );
+
+app.use(
+  cors({
+    origin: ["https://resume-builder-frontend-murex.vercel.app"],
+    methods: ["GET","POST","PUT","DELETE"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
 // setup session
