@@ -41,7 +41,7 @@ function Login() {
 
     axios
       // .post("http://localhost:3001/login", { email, password })
-      .post("https://resume-builder-server-teal.vercel.app/login/success",  { email, password }, 
+      .post("https://resume-builder-server-teal.vercel.app/login",  { email, password }, 
         { withCredentials: true })
       .then((result) => {
         console.log(result);
