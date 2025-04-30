@@ -35,42 +35,14 @@ function Login() {
   }, []);
 
   axios.defaults.withCredentials = true;
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   axios
-  //     .post("http://localhost:3001/login", { email, password })
-  //     .then((result) => {
-  //       console.log(result);
-
-  //       if (result.data.status === "success") {
-  //         if (rememberMe) {
-  //           localStorage.setItem("email", email);
-  //           localStorage.setItem("password", password);
-  //           localStorage.setItem("rememberMe", true);
-  //         } else {
-  //           sessionStorage.setItem("email", email);
-  //           sessionStorage.setItem("password", password);
-  //           localStorage.setItem("rememberMe", false);
-  //         }
-
-  //         alert("Login successful!");
-  //         navigate("/home");
-  //       } else {
-  //         alert(result.data.message || "Invalid credentials");
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       alert("Something went wrong. Please try again.");
-  //     });
-  // };
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:3001/login", { email, password })
+      // .post("http://localhost:3001/login", { email, password })
+      .post("https://resume-builder-server-teal.vercel.app/login",  { email, password }, 
+        { withCredentials: true })
       .then((result) => {
         console.log(result);
 
