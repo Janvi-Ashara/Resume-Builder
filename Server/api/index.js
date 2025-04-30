@@ -132,7 +132,7 @@ passport.deserializeUser(async (id, done) => {
 
 app.get(
   "/auth/google/callback",
-  passport.authenticate("google", { failureRedirect: "http://localhost:3000/login" }),
+  passport.authenticate("google", { failureRedirect: "https://resume-builder-iota-kohl.vercel.app/login" }),
   async (req, res) => {
     try {
       const user = req.user;
@@ -148,10 +148,10 @@ app.get(
         secure: false,
       });
 
-      res.redirect("http://localhost:3000/home");
+      res.redirect("https://resume-builder-iota-kohl.vercel.app/home");
     } catch (error) {
       console.error("Google login error:", error.message);
-      res.redirect("http://localhost:3000/login");
+      res.redirect("https://resume-builder-iota-kohl.vercel.app/login");
     }
   }
 );
@@ -168,7 +168,7 @@ app.get(
 
 
 
-// ✅ Protected route — checks token in cookie
+//  Protected route — checks token in cookie
 app.get("/login/success", async (req, res) => {
   try {
     const token = req.cookies.token;
