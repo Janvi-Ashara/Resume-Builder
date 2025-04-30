@@ -28,13 +28,6 @@ mongoose
 //   })
 // );
 
-// app.use(
-//   cors({
-//     origin: ["https://resume-builder-lime-six.vercel.app"], 
-//     methods: ["GET", "POST", "PUT", "DELETE"],
-//     credentials: true,
-//   })
-// );
 
 app.use(
   cors({
