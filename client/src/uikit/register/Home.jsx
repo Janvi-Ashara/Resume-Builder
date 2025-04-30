@@ -11,7 +11,8 @@ function Home() {
   axios.defaults.withCredentials = true;
 
   useEffect(() => {
-    axios.get("http://localhost:3001/login/success", { withCredentials: true })
+    // axios.get("http://localhost:3001/login/success", { withCredentials: true })
+    axios.get("https://resume-builder-server-teal.vercel.app/login/success", { withCredentials: true })
       .then(res => {
         if (res.status === 200 && res.data.user) {
           setIsAuth(true);
