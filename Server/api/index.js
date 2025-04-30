@@ -226,10 +226,16 @@ app.post("/login", async (req, res) => {
       }
     );
 
+    // res.cookie("token", token, {
+    //   httpOnly: true,
+    //   sameSite: "Lax",
+    //   secure: false,
+    // });
+    
     res.cookie("token", token, {
       httpOnly: true,
-      sameSite: "Lax",
-      secure: false,
+      secure: true,         // Required for cross-origin cookies on HTTPS (like Vercel)
+      sameSite: "None",     // Required for cross-site cookies
     });
 
     return res.json({
