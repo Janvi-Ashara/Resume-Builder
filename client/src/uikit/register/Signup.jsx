@@ -39,7 +39,7 @@ const Signup = () => {
 
   const handleGoogleSignup = () => {
     // handle Google OAuth logic here
-    window.open("https://resume-builder-server-teal.vercel.app/auth/google/callback","_self")
+    window.open("http://localhost:3001/auth/google/callback","_self")
     console.log("Continue with Google clicked");
   };
 
