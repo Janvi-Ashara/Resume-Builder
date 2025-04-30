@@ -14,7 +14,10 @@ const userModel = require("./models/users");
 const Contact = require("./models/contactform");
 
 mongoose
-  .connect(process.env.DATABASE)
+  .connect(process.env.DATABASE,{
+    useNewUrlParser: true,
+  useUnifiedTopology: true
+  })
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB connection error", err));
 
@@ -300,7 +303,8 @@ app.post("/register", async (req, res) => {
     res.json("User registered successfully");
   } catch (err) {
     console.error("Registration error:", err.message);
-    res.status(500).json("Registration failed");
+    // res.status(500).json("Registration failed");
+    res.status(500).json({ error: err.message, stack: err.stack });
   }
 });
 
