@@ -13,7 +13,7 @@ const Headers = () => {
   // console.log("response", userdata);
   const getUser = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/login/success", {
+      const response = await axios.get("https://resume-builder-server-teal.vercel.app/login/success", {
         withCredentials: true,
       });
       setUserdata(response.data.user);
@@ -23,7 +23,8 @@ const Headers = () => {
   };
 
   const logout = () => {
-    window.open("http://localhost:3001/logout", "_self");
+    // window.open("http://localhost:3001/logout", "_self");
+    window.open("https://resume-builder-server-teal.vercel.app/logout", "_self");
   };
 
   useEffect(() => {
