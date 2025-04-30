@@ -164,6 +164,36 @@ app.get(
 //     }
 // })
 
+app.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await userModel.findOne({ email });
+
+    if (!user || user.password !== password) {
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
+
+    // Generate token
+    const token = jwt.sign({ id: user._id }, "jwt-secret-key", {
+      expiresIn: "1d",
+    });
+
+    // Set cookie with secure attributes
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: true,        // ✅ required for cross-origin on HTTPS
+      sameSite: "None",    // ✅ required for cross-origin cookies
+    });
+
+    res.status(200).json({ message: "Login successful" });
+  } catch (err) {
+    console.error("Login error:", err.message);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+// ✅ Protected route — checks token in cookie
 app.get("/login/success", async (req, res) => {
   try {
     const token = req.cookies.token;
@@ -188,68 +218,90 @@ app.get("/login/success", async (req, res) => {
   }
 });
 
-// PROTECTED ROUTE
-app.get("/home", verifyUser, (req, res) => {
-  res.json("Success - Protected Route Accessed");
-});
+// 2
+// app.get("/login/success", async (req, res) => {
+//   try {
+//     const token = req.cookies.token;
+//     if (!token) return res.status(401).json({ message: "No token found" });
+
+//     const decoded = jwt.verify(token, "jwt-secret-key");
+//     const user = await userModel.findById(decoded.id);
+
+//     if (!user) return res.status(404).json({ message: "User not found" });
+
+//     res.status(200).json({
+//       message: "User login success",
+//       user: {
+//         name: user.name,
+//         email: user.email,
+//         image: user.image || "",
+//       },
+//     });
+//   } catch (err) {
+//     console.error("Login success error:", err.message);
+//     res.status(500).json({ message: "Server error" });
+//   }
+// });
+
+
 
 //Local Login
-app.post("/login", async (req, res) => {
-  const { email, password } = req.body;
-  try {
-    const user = await userModel.findOne({ email });
+// app.post("/login", async (req, res) => {
+//   const { email, password } = req.body;
+//   try {
+//     const user = await userModel.findOne({ email });
 
-    if (!user) {
-      return res
-        .status(404)
-        .json({ status: "error", message: "No User found" });
-    }
+//     if (!user) {
+//       return res
+//         .status(404)
+//         .json({ status: "error", message: "No User found" });
+//     }
 
-    if (!user.password) {
-      return res
-        .status(400)
-        .json({ status: "error", message: "Account registered via Google" });
-    }
+//     if (!user.password) {
+//       return res
+//         .status(400)
+//         .json({ status: "error", message: "Account registered via Google" });
+//     }
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res
-        .status(401)
-        .json({ status: "error", message: "Incorrect password" });
-    }
+//     const isMatch = await bcrypt.compare(password, user.password);
+//     if (!isMatch) {
+//       return res
+//         .status(401)
+//         .json({ status: "error", message: "Incorrect password" });
+//     }
 
-    const token = jwt.sign(
-      { id: user._id, email: user.email },
-      "jwt-secret-key",
-      {
-        expiresIn: "1d",
-      }
-    );
+//     const token = jwt.sign(
+//       { id: user._id, email: user.email },
+//       "jwt-secret-key",
+//       {
+//         expiresIn: "1d",
+//       }
+//     );
 
-    // res.cookie("token", token, {
-    //   httpOnly: true,
-    //   sameSite: "Lax",
-    //   secure: false,
-    // });
-    
-    res.cookie("token", token, {
-      httpOnly: true,
-      secure: true,         // Required for cross-origin cookies on HTTPS (like Vercel)
-      sameSite: "None",     // Required for cross-site cookies
-    });
+//     // res.cookie("token", token, {
+//     //   httpOnly: true,
+//     //   sameSite: "Lax",
+//     //   secure: false,
+//     // });
 
-    return res.json({
-      status: "success",
-      user: {
-        displayName: user.name,
-        image: user.image || "",
-      },
-    });
-  } catch (err) {
-    console.error("Login error:", err.message);
-    return res.status(500).json({ status: "error", message: "Server error" });
-  }
-});
+//     res.cookie("token", token, {
+//       httpOnly: true,
+//       secure: true,         // Required for cross-origin cookies on HTTPS (like Vercel)
+//       sameSite: "None",     // Required for cross-site cookies
+//     });
+
+//     return res.json({
+//       status: "success",
+//       user: {
+//         displayName: user.name,
+//         image: user.image || "",
+//       },
+//     });
+//   } catch (err) {
+//     console.error("Login error:", err.message);
+//     return res.status(500).json({ status: "error", message: "Server error" });
+//   }
+// });
 
 // LOCAL REGISTER
 app.post("/register", async (req, res) => {
@@ -274,6 +326,11 @@ app.post("/register", async (req, res) => {
     console.error("Registration error:", err.message);
     res.status(500).json("Registration failed");
   }
+});
+
+// PROTECTED ROUTE
+app.get("/home", verifyUser, (req, res) => {
+  res.json("Success - Protected Route Accessed");
 });
 
 // contact feedback
