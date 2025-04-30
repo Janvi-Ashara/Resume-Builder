@@ -7,7 +7,9 @@ import LandingPage from '../../components/Landing Page/landingPage';
 function Home() {
   const navigate = useNavigate();
   const [isAuth, setIsAuth] = useState(false);
-
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  
   axios.defaults.withCredentials = true;
 
   // useEffect(() => {
