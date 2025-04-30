@@ -28,6 +28,8 @@ mongoose
 //   })
 // );
 
+app.use(express.json());
+app.use(cookieParser());
 
 app.use(
   cors({
@@ -37,8 +39,6 @@ app.use(
   })
 );
 
-app.use(express.json());
-app.use(cookieParser());
 
 
 // setup session
@@ -279,6 +279,7 @@ app.post("/login", async (req, res) => {
 });
 
 // LOCAL REGISTER
+
 app.post("/register", async (req, res) => {
   const { firstname, lastname, email, password } = req.body;
 
@@ -294,7 +295,7 @@ app.post("/register", async (req, res) => {
       email,
       password: hashedPassword,
     });
-
+    console.log("Received registration data:", req.body);
     await newUser.save();
     res.json("User registered successfully");
   } catch (err) {
