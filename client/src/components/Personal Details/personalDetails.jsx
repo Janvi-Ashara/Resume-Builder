@@ -21,7 +21,17 @@ class PersonDetails extends React.Component {
     };}
 
     saveAndContinue = () => {
-      const obj={ firstName : this.state.firstName, lastName : this.state.lastName, address : this.state.address, city : this.state.city,country : this.state.country,zip : this.state.zip,dob : this.state.dob,phoneNo : this.state.phoneNo,email : this.state.email , description : this.state.description }
+      const obj={ 
+        firstName : this.state.firstName, 
+        lastName : this.state.lastName, 
+        address : this.state.address, 
+        city : this.state.city,
+        country : this.state.country,
+        zip : this.state.zip,
+        dob : this.state.dob,
+        phoneNo : this.state.phoneNo,
+        email : this.state.email , 
+        description : this.state.description }
       this.props.personalDataUpdate(obj); 
       sessionStorage.setItem('personal' , JSON.stringify(obj) );
     };
@@ -32,7 +42,7 @@ class PersonDetails extends React.Component {
 
     render() {
 
-      // const picture_sample='https://thumbs.dreamstime.com/b/personal-info-icon-vector-illustration-isolated-flat-cartoon-line-outline-design-user-profile-card-details-symbol-style-my-106255173.jpg'
+     
       return (
         <>
           <div><Navbar array={["Personal Details > "]}/></div>
